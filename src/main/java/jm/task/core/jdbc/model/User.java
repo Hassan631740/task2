@@ -4,30 +4,23 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Table
 public class User {
-    @Id
     private Long id;
-
-    @Column
     private String name;
-
-    @Column
     private String lastName;
+    private byte age;
 
-    @Column
-    private Byte age;
+    // Default constructor
+    public User() {}
 
-    public User() {
-
-    }
-
-    public User(String name, String lastName, Byte age) {
+    // Parameterized constructor
+    public User(String name, String lastName, byte age) {
         this.name = name;
         this.lastName = lastName;
         this.age = age;
     }
 
+    // Getters and setters
     public Long getId() {
         return id;
     }
@@ -52,11 +45,22 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Byte getAge() {
+    public byte getAge() {
         return age;
     }
 
-    public void setAge(Byte age) {
+    public void setAge(byte age) {
         this.age = age;
+    }
+
+    // toString method override
+    @Override
+    public String toString() {
+        return "User {" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
