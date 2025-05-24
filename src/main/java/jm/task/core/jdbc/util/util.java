@@ -8,7 +8,7 @@ public class util  {
     // Database URL, username and password
     static final String DB_URL = "jdbc:mysql://localhost:3306/testdb";
     static final String USER = "root";
-    static final String PASS = "your_password";
+    static final String PASS = ".hassan.92";
 
     public static void main(String[] args) {
         Connection conn = null;

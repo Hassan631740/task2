@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoJDBCImpl implements UserDao {
-    private static final String URL = "jdbc:mysql://localhost:3306/testdb";
+    private static final String URL = "jdbc:mysql://localhost:3306/test";
     private static final String USER = "root";
-    private static final String PASSWORD = "your_password";
+    private static final String PASSWORD = ".hassan.92";
 
     public UserDaoJDBCImpl() {
         // Default constructor
@@ -109,4 +109,5 @@ public class UserDaoJDBCImpl implements UserDao {
             e.printStackTrace();
         }
     }
+
 }

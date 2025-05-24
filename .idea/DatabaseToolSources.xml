@@ -8,6 +8,8 @@
         <introspection-scope>
           <node kind="schema">
             <name qname="test" operator="@" />
+            <name qname="connection" operator="@" />
+            <name qname="connectiondb" operator="@" />
             <name qname="mysql" operator="@" />
             <name qname="performance_schema" operator="@" />
             <name qname="sys" operator="@" />

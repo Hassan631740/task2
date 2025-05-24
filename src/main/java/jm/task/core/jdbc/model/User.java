@@ -20,6 +20,9 @@ public class User {
         this.age = age;
     }
 
+    public User(int id, String name, String email) {
+    }
+
     // Getters and setters
     public Long getId() {
         return id;
