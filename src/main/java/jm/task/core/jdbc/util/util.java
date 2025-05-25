@@ -1,41 +1,42 @@
 package jm.task.core.jdbc.util;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
+import java.util.Properties;
+import jm.task.core.jdbc.model.User;
+import org.hibernate.cfg.Environment;
 
-public class util  {
+
+public class util {
 
     // Database URL, username and password
-    static final String DB_URL = "jdbc:mysql://localhost:3306/testdb";
-    static final String USER = "root";
-    static final String PASS = ".hassan.92";
+    public class Util {
+        private static final SessionFactory sessionFactory;
 
-    public static void main(String[] args) {
-        Connection conn = null;
-
-        try {
-            // Load and register JDBC driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Open a connection
-            System.out.println("Connecting to database...");
-            conn = DriverManager.getConnection(DB_URL, USER, PASS);
-
-            System.out.println("Connected successfully!");
-
-        } catch (SQLException se) {
-            // Handle errors for JDBC
-            se.printStackTrace();
-        } catch (Exception e) {
-            // Handle errors for Class.forName
-            e.printStackTrace();
-        } finally {
-            // Clean up environment
+        static {
             try {
-                if (conn != null) conn.close();
-            } catch (SQLException se) {
-                se.printStackTrace();
+                Configuration configuration = new Configuration();
+                configuration.addAnnotatedClass(User.class);
+
+                Properties settings = new Properties();
+                settings.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
+                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/test");
+                settings.put(Environment.USER, "root");
+                settings.put(Environment.PASS, ".hassan.92");
+                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL8Dialect");
+                settings.put(Environment.SHOW_SQL, "true");
+                settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
+                settings.put(Environment.HBM2DDL_AUTO, "update");
+
+                configuration.setProperties(settings);
+
+                sessionFactory = configuration.buildSessionFactory();
+            } catch (Throwable ex) {
+                throw new ExceptionInInitializerError(ex);
             }
+        }
+
+        public static SessionFactory getSessionFactory() {
+            return sessionFactory;
         }
     }
 }
