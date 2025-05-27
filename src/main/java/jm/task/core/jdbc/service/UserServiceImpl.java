@@ -9,8 +9,35 @@ import jm.task.core.jdbc.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class UserServiceImpl implements UserService {
-    private final UserDao userDao = new UserHibernateDaoImpl();
+public class UserServiceImpl implements UserService {
+    UserDaoJDBCImpl nameDao = new UserDaoJDBCImpl();
+    public void createUsersTable() {
+        nameDao .createUsersTable();
 
-    // All service methods use userDao now...
+    }
+
+    public void dropUsersTable() {
+        nameDao.dropUsersTable();
+
+    }
+
+    public void saveUser(String name, String lastName, byte age) {
+        nameDao.saveUser(name, lastName, age);
+        //test123
+
+    }
+
+    public void removeUserById(long id) {
+
+    }
+
+    @Override
+    public List<User> getAllUsers() {
+        return new ArrayList<>(); // Return empty list instead of null
+    }
+
+    public void cleanUsersTable() {
+        nameDao.cleanUsersTable();
+
+    }
 }
