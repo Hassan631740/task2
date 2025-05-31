@@ -4,7 +4,8 @@ import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.util.HibernateUtil;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.SessionFactory;
+
+
 
 import java.util.List;
 

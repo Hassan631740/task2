@@ -1,33 +1,43 @@
 package jm.task.core.jdbc.util;
 
 import jm.task.core.jdbc.model.User;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.SessionFactory;
+import org.hibernate.service.ServiceRegistry;
 
+import java.util.Properties;
 
 
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
+    private static final String url = "jdbc:mysql://localhost:3306/connection";
+    private static final String user = "root";
+    private static final String password = ".hassan.92";
 
-    static {
-        try {
-            Configuration configuration = new Configuration();
-            configuration.addAnnotatedClass(User.class); // add your entity class
-            configuration.setProperty("hibernate.connection.driver_class", "com.mysql.cj.jdbc.Driver");
-            configuration.setProperty("hibernate.connection.url", "jdbc:mysql://localhost:3306/test");
-            configuration.setProperty("hibernate.connection.username", "root");
-            configuration.setProperty("hibernate.connection.password", ".hassan.92");
-            configuration.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-            configuration.setProperty("hibernate.show_sql", "true");
-            configuration.setProperty("hibernate.hbm2ddl.auto", "none"); // Use none or validate
-
-            sessionFactory = (SessionFactory) configuration.buildSessionFactory();
-        } catch (Throwable ex) {
-            throw new ExceptionInInitializerError(ex);
-        }
-    }
 
     public static SessionFactory getSessionFactory() {
+        if (sessionFactory == null) {
+            try {
+                Configuration configuration = new Configuration();
+                Properties settings = new Properties();
+                settings.put("hibernate.connection.driver", driver);
+                settings.put("hibernate.connection.url", url);
+                settings.put("hibernate.connection.user", user);
+                settings.put("hibernate.connection.password", password);
+                settings.put("hibernate.connection.dialect", "org.hibernate.dialect.MySQLDialect");
+                configuration.setProperties(settings);
+                configuration.addAnnotatedClass(User.class);
+                ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+                        .applySettings(configuration.getProperties()).build();
+
+                sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+            } catch (Exception e) {
+                System.out.println("Problem");
+                e.printStackTrace();
+            }
+        }
         return sessionFactory;
     }
-}
+    }
