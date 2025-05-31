@@ -12,7 +12,7 @@ import java.util.Properties;
 public class HibernateUtil {
     private static SessionFactory sessionFactory;
     private static final String driver = "com.mysql.cj.jdbc.Driver";
-    private static final String url = "jdbc:mysql://localhost:3306/connection";
+    private static final String url = "jdbc:mysql://localhost:3306/test";
     private static final String user = "root";
     private static final String password = ".hassan.92";
 
