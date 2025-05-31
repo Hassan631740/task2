@@ -33,7 +33,11 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<User> getAllUsers() {
-        return new ArrayList<>(); // Return empty list instead of null
+        List<User> allUser = nameDao.getAllUsers();
+        for (User user: allUser) {
+            System.out.println(user);
+        }
+        return allUser;
     }
 
     public void cleanUsersTable() {

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 
 public class Main {
     private final static UserService userService = new UserServiceImpl();
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         // implement algorithm here
        userService.createUsersTable();
        userService.saveUser("Alex", "Sam", (byte)20);

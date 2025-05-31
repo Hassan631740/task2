@@ -18,11 +18,15 @@ public class User {
     @Column
     private byte age;
 
-    public User( String name, String lastName, byte age) {
+    public User ( String name, String lastName, byte age) {
 
         this.name = name;
         this.lastName = lastName;
         this.age = age;
+    }
+
+    public User() {
+
     }
 
     // Constructors, getters, setters
@@ -64,7 +68,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "user{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +

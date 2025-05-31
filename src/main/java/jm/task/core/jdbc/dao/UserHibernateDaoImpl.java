@@ -55,7 +55,7 @@ public class UserHibernateDaoImpl implements UserDao {
     @Override
     public List<User> getAllUsers() {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            return session.createQuery("FROM User", User.class).list();
+            return session.createQuery("FROM users", User.class).list();
         }
     }
 
@@ -80,7 +80,7 @@ public class UserHibernateDaoImpl implements UserDao {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             transaction = session.beginTransaction();
-            session.createQuery("DELETE FROM User").executeUpdate();
+            session.createQuery("DELETE FROM users").executeUpdate();
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) transaction.rollback();
